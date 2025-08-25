@@ -1,0 +1,10 @@
+#type_space{
+    opacity: 0;
+}
+
+.textCorrect{
+    color: lime;
+}
+.textWrong{
+    color: red;
+}
