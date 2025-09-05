@@ -13,7 +13,7 @@ export default function TypingCheck(){
     const charRef = useRef<(HTMLSpanElement | null)[]>([]);
     const inputRef = useRef<(HTMLInputElement | null)>(null);
 
-    const [error, setError] = useState(0);
+    const [error, setError] = useState<number[]>([]);
 
     const [_timer, upTimer] = useState(0);
     const [startState, setStartState] = useState(true); //true - can start, false - cannot start 
@@ -43,6 +43,11 @@ export default function TypingCheck(){
             charRef.current[index - 1]!.className = '';
 
             setIndex(val.length);
+
+            if(error[error.length - 1] == index){
+                setError(prev => prev.slice(0, -1));
+            }
+            
             return;
         }
 
@@ -62,8 +67,8 @@ export default function TypingCheck(){
     const calculateResults = ()=>{
         //score eval
         grossWPM = (index / 5) / (_timer / 60);
-        netWPM = (grossWPM - error) / (_timer / 60);
-        accuracy = ((index - error) / index) * 100;
+        netWPM = grossWPM - (error.length/(_timer / 60));
+        accuracy = ((index - error.length) / index) * 100;
 
         //time eval
         time = getTime(_timer);
@@ -72,7 +77,6 @@ export default function TypingCheck(){
     useEffect(()=>{
         if(index > 0){
             if(startState){
-                console.log("done");
                 setStartState(false);
                 timerManager.current = setInterval(() => {
                     upTimer(prevT => prevT + 1);
@@ -82,19 +86,30 @@ export default function TypingCheck(){
                 charRef.current[index - 1]!.classList.add('textCorrect');
             }else{
                 charRef.current[index - 1]!.classList.add('textWrong');
-                setError(error + 1);
+                setError(prev => {
+                    if(prev.includes(index)){
+                        return [...prev];
+                    }
+                    return [...prev, index];
+                });
             }
         }else{
             charRef.current[0]!.className = '';
         }
     }, [index]);
 
+    //debug 
     useEffect(()=>{
-        console.log(_timer);
+        console.log(error);
+    }, [error]);
+
+    useEffect(()=>{
         if(_timer >= 20 || index >= word.length){
             if (timerManager.current) clearInterval(timerManager.current);
+            setStartState(true);
             calculateResults();
             console.log(grossWPM, netWPM, accuracy, time);
+            console.log(error);
         }
     }, [_timer, index]);
 
