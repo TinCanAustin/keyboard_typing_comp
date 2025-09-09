@@ -2,7 +2,7 @@
 
 import { ChangeEvent, useState, useEffect, useRef } from 'react';
 
-import './style.css'
+import './style.css';
 
 export default function TypingCheck(){
     const word = "I am so fucking tired of the small dick jokes. You guys think you are so funny."
@@ -47,7 +47,7 @@ export default function TypingCheck(){
             if(error[error.length - 1] == index){
                 setError(prev => prev.slice(0, -1));
             }
-            
+
             return;
         }
 
@@ -104,7 +104,7 @@ export default function TypingCheck(){
     }, [error]);
 
     useEffect(()=>{
-        if(_timer >= 20 || index >= word.length){
+        if(_timer >= 60 || index >= word.length){
             if (timerManager.current) clearInterval(timerManager.current);
             setStartState(true);
             calculateResults();
