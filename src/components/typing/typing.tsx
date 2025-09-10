@@ -1,6 +1,7 @@
 'use client';
 
 import { ChangeEvent, useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 import './style.css';
 
@@ -18,6 +19,8 @@ export default function TypingCheck(){
     const [_timer, upTimer] = useState(0);
     const [startState, setStartState] = useState(true); //true - can start, false - cannot start 
     const timerManager = useRef<NodeJS.Timeout | null>(null);
+
+    const router = useRouter();
 
     //score
     let grossWPM : number = 0;
@@ -74,6 +77,14 @@ export default function TypingCheck(){
         time = getTime(_timer);
     }
 
+    const loadResult = ()=>{
+        sessionStorage.setItem("grossWPM", grossWPM.toString());
+        sessionStorage.setItem("netWPM", netWPM.toString());
+        sessionStorage.setItem("accuracy", accuracy.toString());
+        sessionStorage.setItem("time", time);
+        router.push('/result');
+    }
+
     useEffect(()=>{
         if(index > 0){
             if(startState){
@@ -108,8 +119,10 @@ export default function TypingCheck(){
             if (timerManager.current) clearInterval(timerManager.current);
             setStartState(true);
             calculateResults();
-            console.log(grossWPM, netWPM, accuracy, time);
-            console.log(error);
+            // Debug logging
+            // console.log(grossWPM, netWPM, accuracy, time);
+            // console.log(error);
+            loadResult();
         }
     }, [_timer, index]);
 
