@@ -5,8 +5,8 @@
 }
 .type_space{
     display: flex;
-    justify-content: center;  /* center horizontally */
-    align-items: center;      /* center vertically */
+    justify-content: center;
+    align-items: center;
     height: 60vh;
     font-size: 2em;
 }
