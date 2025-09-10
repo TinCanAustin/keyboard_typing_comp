@@ -7,8 +7,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 70vh;
     font-size: 2em;
+
+    line-height: 1.5;
+    text-align: center;
+
+    overflow: hidden;
+}
+
+.type_space > p {
+    max-width: 80ch;
+    max-height: 20vh;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+    overflow: hidden;
+    display: block;
 }
 
 .textCorrect{
