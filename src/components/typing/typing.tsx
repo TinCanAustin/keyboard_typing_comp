@@ -82,6 +82,9 @@ export default function TypingCheck(){
         sessionStorage.setItem("netWPM", netWPM.toString());
         sessionStorage.setItem("accuracy", accuracy.toString());
         sessionStorage.setItem("time", time);
+
+        inputRef.current!.disabled = true;
+
         router.push('/result');
     }
 
@@ -110,9 +113,9 @@ export default function TypingCheck(){
     }, [index]);
 
     //debug 
-    useEffect(()=>{
-        console.log(error);
-    }, [error]);
+    // useEffect(()=>{
+    //     console.log(error);
+    // }, [error]);
 
     useEffect(()=>{
         if(_timer >= 60 || index >= word.length){
