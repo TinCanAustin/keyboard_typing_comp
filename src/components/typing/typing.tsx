@@ -20,6 +20,7 @@ export default function TypingCheck(){
     const [error, setError] = useState<number[]>([]);
 
     const [_timer, upTimer] = useState(0);
+    const [l_timer, lowTimer] = useState(60);
     const [startState, setStartState] = useState(true); //true - can start, false - cannot start 
     const timerManager = useRef<NodeJS.Timeout | null>(null);
 
@@ -50,7 +51,6 @@ export default function TypingCheck(){
 
         return time;
     }
-    
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
@@ -122,6 +122,7 @@ export default function TypingCheck(){
         upTimer(0);
         setError([]);
         setInput("");
+        lowTimer(60);
 
         focusText();
     }
@@ -175,9 +176,19 @@ export default function TypingCheck(){
         }
     }, [_timer, index]);
 
+    useEffect(()=>{
+        if(l_timer > 0 && !startState){
+            lowTimer(prevT => prevT - 1);
+        }
+    }, [_timer])
+
+
     return (
         <>
             <div id='type_body'>
+                <div className='timer'>
+                    <p>{l_timer}</p>
+                </div>
                 <div className='type_space' onClick={focusText}>
                     <p>
                         {word.split("").map((char, i)=>{

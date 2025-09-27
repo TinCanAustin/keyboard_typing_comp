@@ -1,3 +1,17 @@
+#type_body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.timer{
+    font-size: 1.5em;
+    width: 82ch;
+    text-align: right;
+}
+
 #type_space{
     opacity: 0;
     pointer-events: none;
@@ -9,7 +23,7 @@
     align-items: center;
     font-size: 2em;
 
-    margin-top: 25vh;
+    /* margin-top: 25vh; */
 
     line-height: 1.5;
     text-align: center;
