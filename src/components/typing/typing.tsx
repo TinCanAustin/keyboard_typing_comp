@@ -2,6 +2,7 @@
 
 import { ChangeEvent, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { RiResetLeftFill } from 'react-icons/ri';
 
 import './style.css';
 
@@ -102,6 +103,29 @@ export default function TypingCheck(){
         router.push('/result');
     }
 
+    const focusText = ()=>{
+        inputRef.current?.focus();
+    }
+
+    const reset = ()=>{
+        if(!startState){
+            if (timerManager.current) clearInterval(timerManager.current);
+            setStartState(true);
+        }
+        inputRef.current!.value = '';
+        charRef.current.forEach((e)=>{
+            e!.className = '';
+        });
+
+        //default vals
+        setIndex(0);
+        upTimer(0);
+        setError([]);
+        setInput("");
+
+        focusText();
+    }
+
     useEffect(()=>{
         if(index > 0){
             if(startState){
@@ -151,24 +175,25 @@ export default function TypingCheck(){
         }
     }, [_timer, index]);
 
-    const focusText = ()=>{
-        inputRef.current?.focus();
-    }
-
     return (
         <>
-            <div className='type_space' onClick={focusText}>
-                <p>
-                    {word.split("").map((char, i)=>{
-                        return (
-                            <span 
-                            key={i} 
-                            ref={(el) => {charRef.current[i] = el}}>
-                                {char}
-                            </span>
-                        );
-                    })} 
-                </p>
+            <div id='type_body'>
+                <div className='type_space' onClick={focusText}>
+                    <p>
+                        {word.split("").map((char, i)=>{
+                            return (
+                                <span 
+                                key={i} 
+                                ref={(el) => {charRef.current[i] = el}}>
+                                    {char}
+                                </span>
+                            );
+                        })} 
+                    </p>
+                </div>
+                <button id='reset_button' onClick={reset}>
+                    <RiResetLeftFill size={30} className='reset_icon'/>
+                </button>
             </div>
             <input name="test" 
             id="type_space" 
