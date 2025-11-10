@@ -11,7 +11,7 @@ export default function ResultDisplay({grossWPM, netWPM, accuracy, time} : {
         <div id='resultInfos'>
             <div><p>Gross WPM:</p><p>{grossWPM}</p></div>
             <div><p>Net WPM:</p><p>{netWPM}</p></div>
-            <div><p>Accuracy:</p><p>{accuracy}</p></div>
+            <div><p>Accuracy:</p><p>{accuracy}%</p></div>
             <div><p>Time:</p><p>{time}</p></div>
         </div>
     );
