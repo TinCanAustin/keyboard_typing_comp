@@ -3,6 +3,7 @@ import ResultDisplay from "@/components/resultDisplay/result";
 import { isValid } from "@/functions/isValid";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import './style.css';
 
 export default function ResultPage(){
     const router = useRouter();
@@ -44,8 +45,10 @@ export default function ResultPage(){
 
     return (
         <>
-            <ResultDisplay grossWPM={grossWPM} netWPM={netWPM} accuracy={accuracy} time={time}/>
-            <button onClick={goBack}>Reset</button>
+            <div id="resultPage" className="full-page-element">
+                <ResultDisplay grossWPM={grossWPM} netWPM={netWPM} accuracy={accuracy} time={time}/>
+                <button onClick={goBack}>Reset</button>
+            </div>
         </>
     );
 }

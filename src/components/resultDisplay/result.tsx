@@ -1,4 +1,5 @@
 'use client';
+import './style.css';
 
 export default function ResultDisplay({grossWPM, netWPM, accuracy, time} : {
     grossWPM : number | null,
@@ -7,11 +8,11 @@ export default function ResultDisplay({grossWPM, netWPM, accuracy, time} : {
     time : string | null
 }){
     return (
-        <div>
-        <p>Gross WPM: {grossWPM}</p>
-        <p>Net WPM: {netWPM}</p>
-        <p>Accuracy: {accuracy}</p>
-        <p>Time: {time}</p>
+        <div id='resultInfos'>
+            <div><p>Gross WPM:</p><p>{grossWPM}</p></div>
+            <div><p>Net WPM:</p><p>{netWPM}</p></div>
+            <div><p>Accuracy:</p><p>{accuracy}</p></div>
+            <div><p>Time:</p><p>{time}</p></div>
         </div>
     );
 }

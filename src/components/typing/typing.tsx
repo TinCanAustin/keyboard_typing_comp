@@ -185,7 +185,7 @@ export default function TypingCheck(){
 
     return (
         <>
-            <div id='type_body'>
+            <div id='type_body' className='full-page-element'>
                 <div className='timer'>
                     <p>{l_timer}</p>
                 </div>
