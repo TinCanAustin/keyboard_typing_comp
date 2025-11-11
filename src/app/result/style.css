@@ -1,0 +1,30 @@
+#resultPage{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+#score-display {
+    justify-content: left;
+}
+
+.reset_button-res{
+    align-items: center;
+    justify-items: center;
+    margin-top: 1rem;
+    width: 5rem;
+    transition: transform 0.5s ease;
+    border-radius: 1rem;
+}
+.reset_button-res:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.reset_icon-res{
+    transition: transform 0.3s ease;
+    margin: 0.8rem 0rem;
+}
+.reset_button-res:hover .reset_icon-res{
+    transform: rotate(-60deg);
+}
