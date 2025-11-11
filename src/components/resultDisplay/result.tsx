@@ -1,4 +1,3 @@
-'use client';
 import './style.css';
 
 export default function ResultDisplay({grossWPM, netWPM, accuracy, time} : {
