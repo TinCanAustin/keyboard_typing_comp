@@ -1,7 +1,8 @@
-#resultInfos{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50vw;
-    min-width: 40vw;
+.score-heading{
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.score-text{
+    font-size: 1.4rem;
 }

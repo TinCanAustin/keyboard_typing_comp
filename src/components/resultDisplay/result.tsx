@@ -8,11 +8,11 @@ export default function ResultDisplay({grossWPM, netWPM, accuracy, time} : {
     time : string | null
 }){
     return (
-        <div id='resultInfos'>
-            <div><p>Gross WPM:</p><p>{grossWPM}</p></div>
-            <div><p>Net WPM:</p><p>{netWPM}</p></div>
-            <div><p>Accuracy:</p><p>{accuracy}%</p></div>
-            <div><p>Time:</p><p>{time}</p></div>
+        <div>
+            <div><p className='score-heading'>Gross WPM:</p><p className='score-text'>{grossWPM}</p></div>
+            <div><p className='score-heading'>Net WPM:</p><p className='score-text'>{netWPM}</p></div>
+            <div><p className='score-heading'>Accuracy:</p><p className='score-text'>{accuracy}%</p></div>
+            <div><p className='score-heading'>Time:</p><p className='score-text'>{time}</p></div>
         </div>
     );
 }
