@@ -3,16 +3,22 @@
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header(){
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const pathname = usePathname();
 
     useEffect(()=>{
         setMounted(true);
     }, []);
 
     if(!mounted){
+        return null;
+    }
+
+    if(pathname == "/"){
         return null;
     }
 
