@@ -1,6 +1,7 @@
 'use client';
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import './style.css';
 
@@ -11,6 +12,8 @@ export default function Home() {
   const [width, setWidth] = useState(300);
   const [height, setHeight] = useState(0);
 
+  const router = useRouter();
+
   useEffect(()=>{
     setWidth(window.innerWidth/3);
     setHeight(window.innerHeight/4);
@@ -19,6 +22,10 @@ export default function Home() {
 
   if(!mounted){
     return null;
+  }
+
+  const go_to_local = ()=>{
+    router.push('/local');
   }
 
   return (
@@ -32,7 +39,7 @@ export default function Home() {
           priority={true}
         />
         <div id="select-hold">
-          <button id="local-btn" className="select-btn">Local Comp</button>
+          <button id="local-btn" className="select-btn" onClick={go_to_local}>Local Comp</button>
           <button id="online-btn" className="select-btn">Online Comp</button>
         </div>
       </div>
