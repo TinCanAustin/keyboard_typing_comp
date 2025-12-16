@@ -50,3 +50,19 @@
     display: flex;
     justify-content: center;
 }
+
+#set-next > button {
+    margin: 1rem;
+    width: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.setting-icon{
+    transition: transform 0.3s ease-in-out;
+}
+
+#set-next > button:hover .setting-icon{
+   transform: scale(1.5);
+}

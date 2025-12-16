@@ -2,13 +2,20 @@
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 import './style.css';
 import Toggle from "@/ui-comp/toggle/toggle";
 
-export default function PlaySetup(){
+export default function PlaySetup({_next}:{
+    _next : ()=>void
+}){
+    const router = useRouter();
+
     const [timer, setTimer] = useState(15);
     const buttonRef = useRef<(HTMLButtonElement | null)[]>([]);
+
+    const [players, setPlayers] = useState(1);
 
     const [togglePunct, setPunct] = useState(false);
     const [toggleNum, setNum] = useState(false);
@@ -26,6 +33,21 @@ export default function PlaySetup(){
     }
     const enableNum = ():void=>{
         setNum(state => !state);
+    }
+
+    const cancleFunc = ()=>{
+        router.back();
+    }
+
+    const confirmFunc = ()=>{
+        const settings = {
+            players: players,
+            time: timer,
+            punct: togglePunct,
+            num: toggleNum
+        }
+        localStorage.setItem('settings', JSON.stringify(settings));
+        
     }
 
     useEffect(
@@ -57,7 +79,13 @@ export default function PlaySetup(){
                 </div>
                 <div className="select-align">
                     <p>Number of players: </p>
-                    <input type="number" name="players" min={1} max={20} step={1} id="count-style"/>
+                    <input type="number" name="players" 
+                    min={1} 
+                    max={20} 
+                    step={1} 
+                    value={players}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setPlayers(Number(e.target.value))}
+                    id="count-style"/>
                 </div>
                 <div className="select-align">
                     <p>Punctuation?</p>
@@ -68,8 +96,8 @@ export default function PlaySetup(){
                     <Toggle func={enableNum} check={toggleNum}/>
                 </div>
                 <div id="set-next">
-                    <button><RiArrowDropRightLine size={50}/></button>
-                    <button><MdCancel size={30}/></button>
+                    <button><RiArrowDropRightLine size={50} className="setting-icon"/></button>
+                    <button onClick={cancleFunc}><MdCancel size={30} className="setting-icon"/></button>
                 </div>
             </div>
         </div>
