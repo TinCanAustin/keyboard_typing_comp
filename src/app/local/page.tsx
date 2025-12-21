@@ -18,7 +18,7 @@ export default function Local_play(){
     return (
         <>
             {playState == 0 && <PlaySetup _next={incState}/>}
-            {playState == 1 && <PlayerAdd _prev={decState}/>}
+            {playState == 1 && <PlayerAdd _prev={decState} _next={incState}/>}
         </>
     );
 }
