@@ -1,10 +1,3 @@
-#setup-settings{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 #setup-hold{
     width: 40%;
 }
@@ -46,12 +39,12 @@
     border-radius: 0.5rem;
 }
 
-#set-next {
+.set-next {
     display: flex;
     justify-content: center;
 }
 
-#set-next > button {
+.set-next > button {
     margin: 1rem;
     width: 3vw;
     display: flex;
@@ -63,6 +56,6 @@
     transition: transform 0.3s ease-in-out;
 }
 
-#set-next > button:hover .setting-icon{
+.set-next > button:hover .setting-icon{
    transform: scale(1.5);
 }

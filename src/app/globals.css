@@ -22,3 +22,10 @@ body {
   width: 100%;
   /* Additional styles as needed */
 }
+
+.center-screen-element{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

@@ -47,7 +47,7 @@ export default function PlaySetup({_next}:{
             num: toggleNum
         }
         localStorage.setItem('settings', JSON.stringify(settings));
-        
+        _next();
     }
 
     useEffect(
@@ -65,7 +65,7 @@ export default function PlaySetup({_next}:{
     [timer]);
 
     return(
-        <div id="setup-settings" className="full-page-element">
+        <div id="setup-settings" className="full-page-element center-screen-element">
             <div id="setup-hold">
                 <h3>Game Settings</h3>
                 <div className="select-align">
@@ -95,8 +95,8 @@ export default function PlaySetup({_next}:{
                     <p>Numbers?</p>
                     <Toggle func={enableNum} check={toggleNum}/>
                 </div>
-                <div id="set-next">
-                    <button><RiArrowDropRightLine size={50} className="setting-icon"/></button>
+                <div className="set-next">
+                    <button onClick={confirmFunc}><RiArrowDropRightLine size={50} className="setting-icon"/></button>
                     <button onClick={cancleFunc}><MdCancel size={30} className="setting-icon"/></button>
                 </div>
             </div>
