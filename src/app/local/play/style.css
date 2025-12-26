@@ -1,0 +1,9 @@
+.player-title{
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 5vh;
+}
+
+#player-name{
+    font-weight: bolder;
+}
