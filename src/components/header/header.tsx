@@ -24,13 +24,13 @@ export default function Header(){
 
     return (
         <div className="header">
-            <Image
+            <a href="/"><Image
                 src={resolvedTheme == "dark" ? "/placementLogo-Dark.png" : "/placementLogo-Light.png"}
                 alt="Logo"
                 width={300}
                 height={78}
                 priority={true}
-            />
+            /></a>
         </div>
     );
 }
