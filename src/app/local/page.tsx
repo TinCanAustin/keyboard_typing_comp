@@ -2,11 +2,13 @@
 
 import PlaySetup from "@/components/play-setup/setup";
 import PlayerAdd from "@/components/player-add/player_add";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function Local_play(){
+export default function Local_settings(){
 
     const [playState, setState] = useState(0);
+    const router = useRouter();
 
     const incState = ()=>{
         setState(s => s += 1);
@@ -14,6 +16,12 @@ export default function Local_play(){
     const decState = ()=>{
         setState(s => s -= 1);
     }
+
+    useEffect(()=>{
+        if(playState == 2){
+            router.push("/local/play");
+        }
+    }, [playState]);
 
     return (
         <>

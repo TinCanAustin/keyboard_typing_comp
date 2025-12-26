@@ -14,11 +14,12 @@ export default function PlayerAdd({_prev, _next}:{
     const [playerCount, setCount] = useState(1);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
+    const settings = JSON.parse(localStorage.getItem("settings") || '{}');
+
     useEffect(()=>{
         if(inputRef.current){
             inputRef.current.focus();
         }
-        const settings = JSON.parse(localStorage.getItem("settings") || '{}');
         if(Object.keys(settings).length > 0){
             console.log(Number(settings["players"]));
             maxCount.current = Number(settings["players"]);
@@ -36,8 +37,10 @@ export default function PlayerAdd({_prev, _next}:{
         }else{
             console.log(playerNames.current);
             console.log("done");
+            settings["names"] = playerNames.current;
+            localStorage.setItem('settings', JSON.stringify(settings));
+            _next();
             return;
-            //_next();
         }
     }
 
