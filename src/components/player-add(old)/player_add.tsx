@@ -4,7 +4,7 @@ import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
 
 import './style.css';
 
-export default function PlayerAdd({_prev, _next}:{
+export default function _PlayerAdd({_prev, _next}:{
     _prev : ()=>void,
     _next : ()=>void
 }){

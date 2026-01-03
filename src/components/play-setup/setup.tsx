@@ -15,7 +15,7 @@ export default function PlaySetup({_next}:{
     const [timer, setTimer] = useState(15);
     const buttonRef = useRef<(HTMLButtonElement | null)[]>([]);
 
-    const [players, setPlayers] = useState(1);
+    // const [players, setPlayers] = useState(1);
 
     const [togglePunct, setPunct] = useState(false);
     const [toggleNum, setNum] = useState(false);
@@ -41,7 +41,7 @@ export default function PlaySetup({_next}:{
 
     const confirmFunc = ()=>{
         const settings = {
-            players: players,
+            // players: players,
             time: timer,
             punct: togglePunct,
             num: toggleNum
@@ -77,7 +77,7 @@ export default function PlaySetup({_next}:{
                         <button onClick={manageTimer} ref={setRef(4)}>120</button>
                     </div>
                 </div>
-                <div className="select-align">
+                {/* <div className="select-align">
                     <p>Number of players: </p>
                     <input type="number" name="players" 
                     min={1} 
@@ -86,7 +86,7 @@ export default function PlaySetup({_next}:{
                     value={players}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setPlayers(Number(e.target.value))}
                     id="count-style"/>
-                </div>
+                </div> */}
                 <div className="select-align">
                     <p>Punctuation?</p>
                     <Toggle func={enablePunct} check={togglePunct}/>

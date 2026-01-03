@@ -6,11 +6,7 @@ import { RiResetLeftFill } from 'react-icons/ri';
 
 import './style.css';
 
-export default function TypingCheck({scoreRef, turnRef, _next} : {
-    scoreRef?: React.RefObject<any[]>;
-    turnRef?: number;
-    _next: ()=>void;
-}){
+export default function TypingCheck(){
     // const word = "I am so fucking tired of the small dick jokes. You guys think you are so funny.  You think bigger is better. You are all morons. My dick is a precision instrument. A surgical tool. It is designed for accuracy not blunt force trauma. You guys are walking around with these giant unmanageable salamis. You probably knock over lamps when you turn around too fast. I hit the g-spot like a special forces sniper. Pinpoint accuracy every single time. You guys are just carpet bombing the whole area hoping to hit something. You are the collateral damage of sex. Women tell me they prefer it. They say its cute. They say it doesnt feel like their insides are being rearranged by a rogue battering ram. You are giving women internal bleeding and think you are a sex god. So laugh all you want at my tactical 3 inch stud finder. Ill be the one getting invited back. You will be wondering why she blocked your number after you gave her a prolapsed uterus with your goddamn anaconda. You probably dont even know what a clitoris is. You think its a type of dinosaur. Clitorisaurus Rex.";
 
     const word = "I am so fucking tired of the small dick jokes. You guys think you are so funny.";
@@ -97,23 +93,14 @@ export default function TypingCheck({scoreRef, turnRef, _next} : {
     }
 
     const loadResult = ()=>{
-        // sessionStorage.setItem("grossWPM", grossWPM.toString());
-        // sessionStorage.setItem("netWPM", netWPM.toString());
-        // sessionStorage.setItem("accuracy", accuracy.toString());
-        // sessionStorage.setItem("time", time);
-
-        if(scoreRef?.current && turnRef){
-            scoreRef.current[turnRef] = {
-                grossWPM : grossWPM,
-                netWPM : netWPM,
-                accuracy : accuracy,
-                time : time
-            };
-        }
+        sessionStorage.setItem("grossWPM", grossWPM.toString());
+        sessionStorage.setItem("netWPM", netWPM.toString());
+        sessionStorage.setItem("accuracy", accuracy.toString());
+        sessionStorage.setItem("time", time);
 
         inputRef.current!.disabled = true;
 
-        _next();
+        router.push('/local/result');
     }
 
     const focusText = ()=>{
