@@ -1,0 +1,16 @@
+#card{
+    width: 80%;
+    border: 1px solid;
+    border-radius: 0.25em;
+    margin: 1vh 0vw;    
+    cursor: pointer;
+}
+#card:hover {
+    transform: scale(1.15);
+}
+
+#card > p{
+    font-size: 1.2em;
+    padding: 0.8vh;
+    text-align: center;
+}
