@@ -1,0 +1,39 @@
+.score-table{
+    border-collapse: collapse;
+    margin: 1vh;
+    font-size: 1.5em;
+    min-width: 65vw;
+    width: 100%;
+
+    height: 50%;
+    display: block;
+}
+
+.score-table thead {
+    display: table;
+    min-width: 65vw;
+    table-layout: fixed;
+}
+
+.score-table tbody {
+    display: block;
+    max-height: 100%; 
+    overflow-y: auto;
+    table-layout: fixed; 
+}
+
+.score-table tbody tr {
+    display: table;
+    min-width: 65vw;
+    table-layout: fixed;
+}
+
+.score-table th, .score-table td{
+    padding: 12px 15px;
+    text-align: center;
+    width: 25%;
+}
+
+.score-table tbody tr, .score-table thead {
+  border-bottom: 1px solid; /* Thin lines between rows */
+}

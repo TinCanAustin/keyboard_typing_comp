@@ -45,7 +45,7 @@ export default function ResultPage(){
 
     return (
         <>
-            <div id="resultPage" className="full-page-element">
+            <div id="resultPage">
                 <div id="score-display">
                     <ResultDisplay grossWPM={grossWPM} netWPM={netWPM} accuracy={accuracy} time={time}/>
                     <button className='reset_button-res' onClick={goBack}>
