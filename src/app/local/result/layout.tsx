@@ -12,7 +12,7 @@ export default function ResultLayout({
             <div className="result-body">
                 {children}
                 <div className="mis-info">
-                    <h1>Leaderboard:</h1>
+                    <h1 className="title">Leaderboard:</h1>
                     {scoreboard}
                 </div>
             </div>

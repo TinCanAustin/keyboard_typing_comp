@@ -65,7 +65,7 @@ export default function PlayerManager(){
     const setScore = (i : number, name : string)=>{
         if(settings.current['players'] != undefined){
             if(settings.current['players'][i]['name'] == name){
-                settings.current['players'][i]['score'] = score;
+                settings.current['players'][i]['score'] = score.current;
                 localStorage.setItem('settings', JSON.stringify(settings.current));
             }
             goBack();
