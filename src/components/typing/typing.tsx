@@ -85,8 +85,8 @@ export default function TypingCheck(){
     const calculateResults = ()=>{
         //score eval
         grossWPM = (index / 5) / (_timer / 60);
-        netWPM = grossWPM - (error.length/(_timer / 60));
-        accuracy = ((index - error.length) / index) * 100;
+        netWPM = Math.round(grossWPM - (error.length/(_timer / 60)));
+        accuracy = Math.round(((index - error.length) / index) * 100);
 
         //time eval
         time = getTime(_timer);
