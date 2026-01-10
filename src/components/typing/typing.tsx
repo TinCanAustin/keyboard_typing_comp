@@ -6,10 +6,12 @@ import { RiResetLeftFill } from 'react-icons/ri';
 
 import './style.css';
 
-export default function TypingCheck(){
-    // const word = "I am so fucking tired of the small dick jokes. You guys think you are so funny.  You think bigger is better. You are all morons. My dick is a precision instrument. A surgical tool. It is designed for accuracy not blunt force trauma. You guys are walking around with these giant unmanageable salamis. You probably knock over lamps when you turn around too fast. I hit the g-spot like a special forces sniper. Pinpoint accuracy every single time. You guys are just carpet bombing the whole area hoping to hit something. You are the collateral damage of sex. Women tell me they prefer it. They say its cute. They say it doesnt feel like their insides are being rearranged by a rogue battering ram. You are giving women internal bleeding and think you are a sex god. So laugh all you want at my tactical 3 inch stud finder. Ill be the one getting invited back. You will be wondering why she blocked your number after you gave her a prolapsed uterus with your goddamn anaconda. You probably dont even know what a clitoris is. You think its a type of dinosaur. Clitorisaurus Rex.";
+export default function TypingCheck({sec} : {
+    sec : number
+}){
+    const word = "I am so fucking tired of the small dick jokes. You guys think you are so funny.  You think bigger is better. You are all morons. My dick is a precision instrument. A surgical tool. It is designed for accuracy not blunt force trauma. You guys are walking around with these giant unmanageable salamis. You probably knock over lamps when you turn around too fast. I hit the g-spot like a special forces sniper. Pinpoint accuracy every single time. You guys are just carpet bombing the whole area hoping to hit something. You are the collateral damage of sex. Women tell me they prefer it. They say its cute. They say it doesnt feel like their insides are being rearranged by a rogue battering ram. You are giving women internal bleeding and think you are a sex god. So laugh all you want at my tactical 3 inch stud finder. Ill be the one getting invited back. You will be wondering why she blocked your number after you gave her a prolapsed uterus with your goddamn anaconda. You probably dont even know what a clitoris is. You think its a type of dinosaur. Clitorisaurus Rex.";
 
-    const word = "I am so fucking tired of the small dick jokes. You guys think you are so funny.";
+    // const word = "I am so fucking tired of the small dick jokes. You guys think you are so funny.";
     
     const [input, setInput] = useState("");
     const [index, setIndex] = useState(0);
@@ -18,9 +20,10 @@ export default function TypingCheck(){
     const inputRef = useRef<(HTMLInputElement | null)>(null);
 
     const [error, setError] = useState<number[]>([]);
+    const actualError = useRef<number>(0);
 
     const [_timer, upTimer] = useState(0);
-    const [l_timer, lowTimer] = useState(60);
+    const [l_timer, lowTimer] = useState(sec);
     const [startState, setStartState] = useState(true); //true - can start, false - cannot start 
     const timerManager = useRef<NodeJS.Timeout | null>(null);
 
@@ -85,8 +88,8 @@ export default function TypingCheck(){
     const calculateResults = ()=>{
         //score eval
         grossWPM = (index / 5) / (_timer / 60);
-        netWPM = Math.round(grossWPM - (error.length/(_timer / 60)));
-        accuracy = Math.round(((index - error.length) / index) * 100);
+        netWPM = Math.round(grossWPM - (actualError.current/(_timer / 60)));
+        accuracy = Math.round(((index - actualError.current) / index) * 100);
 
         //time eval
         time = getTime(_timer);
@@ -122,7 +125,7 @@ export default function TypingCheck(){
         upTimer(0);
         setError([]);
         setInput("");
-        lowTimer(60);
+        lowTimer(sec);
 
         focusText();
     }
@@ -145,6 +148,7 @@ export default function TypingCheck(){
                     }
                     return [...prev, index];
                 });
+                actualError.current++;
             }
 
             if(charRef.current[index]){
@@ -165,7 +169,7 @@ export default function TypingCheck(){
     // }, [error]);
 
     useEffect(()=>{
-        if(_timer >= 60 || index >= word.length){
+        if(_timer >= sec || index >= word.length){
             if (timerManager.current) clearInterval(timerManager.current);
             setStartState(true);
             calculateResults();
