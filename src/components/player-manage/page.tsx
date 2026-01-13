@@ -5,6 +5,7 @@ import './style.css'
 import { useRouter } from "next/navigation";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import BCard from '@/ui-comp/card-button/card-button';
+import { updatePoints } from '@/functions/updatePoints';
 
 
 export default function PlayerManager(){
@@ -66,6 +67,7 @@ export default function PlayerManager(){
         if(settings.current['players'] != undefined){
             if(settings.current['players'][i]['name'] == name){
                 settings.current['players'][i]['score'] = score.current;
+                settings.current['players'] = updatePoints(settings.current['players']);                
                 localStorage.setItem('settings', JSON.stringify(settings.current));
             }
             goBack();
