@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import './style.css'
+import { compare } from '@/functions/compare';
 
 export default function Scoreboard(){
     const [infoAvailable, setAvailability] = useState(false);
@@ -11,6 +12,10 @@ export default function Scoreboard(){
     useEffect(()=>{
         const raw = JSON.parse(localStorage.getItem("settings") || '{}');
         setSettings(raw);
+        setSettings(d=>({
+            ...d, 
+            players: d.players ? [...d.players].sort(compare) : d.players,
+        }))
         setAvailability(!!raw.players?.length);
     }, [pathname]);
 

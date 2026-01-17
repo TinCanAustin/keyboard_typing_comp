@@ -1,8 +1,16 @@
-.score-heading{
-    font-size: 1.8rem;
+.main{
+    font-size: 2rem;
     font-weight: 600;
+}
+.sub-main{
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.score-heading{
+    font-size: 1.5rem;
 }
 
 .score-text{
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
