@@ -40,7 +40,7 @@ export default function ResultPage(){
     }, [])
 
     const goBack = ()=>{
-        router.back();
+        router.replace('/local/play');
     }
 
     return (
