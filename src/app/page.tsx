@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import './style.css';
+import { wordGenerator } from "@/functions/word_generator";
 
 export default function Home() {
   const { resolvedTheme } = useTheme();
@@ -18,6 +19,7 @@ export default function Home() {
     setWidth(window.innerWidth/3);
     setHeight(window.innerHeight/4);
     setMounted(true);
+    wordGenerator();
   }, []);
 
   if(!mounted){
