@@ -1,15 +1,15 @@
-import { addNouns, addTemplates, paragraph } from "@ndaidong/txtgen";
 import sentence from '../misc/words.json'
 
-export function wordGenerator(length : number, punct : boolean, num : boolean){
+export function wordGenerator(length : number, punct : boolean, num : boolean) : string{
     var word = "";
 
     const normalSize = sentence.noNumbers.length;
     const numberSize = sentence.withNumbers.length;
     const noPunctNumSize = sentence.noPunct.length;
 
-    if(punct){
+    if(punct == true){
         if(num){
+            console.log("punct and num");
             for(let i = 0; i < length; i++){
                 const chance : number = Math.floor(Math.random() * 2);
                 switch(chance){
@@ -25,6 +25,7 @@ export function wordGenerator(length : number, punct : boolean, num : boolean){
                 word += " ";
             }
         }else{
+            console.log("punct and no num");
             for(let i = 0; i < length; i++){
                 word += sentence.noNumbers[Math.floor(Math.random() * normalSize)];
                 word += " ";
@@ -32,6 +33,7 @@ export function wordGenerator(length : number, punct : boolean, num : boolean){
         }
     }else{
         if(num){
+            console.log("no punct and num");
             for(let i = 0; i < length; i++){
                 const chance : number = Math.floor(Math.random() * 2);
                 switch(chance){
@@ -47,14 +49,16 @@ export function wordGenerator(length : number, punct : boolean, num : boolean){
                 word += " ";
             }
         }else{
+            console.log("no punct and no num");
             for(let i = 0; i < length; i++){
                 word += sentence.noNumbers[Math.floor(Math.random() * normalSize)];
                 word += " ";
             }
         }
-        word.replace(/[^\w\s]|_/g, "");
+
+        word = word.replace(/[^\w\s]|_/g, "");
     }
 
-    word.toLowerCase();
+    word = word.toLowerCase();
     return word;
 }
