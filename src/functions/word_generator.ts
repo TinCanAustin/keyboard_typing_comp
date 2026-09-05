@@ -9,7 +9,6 @@ export function wordGenerator(length : number, punct : boolean, num : boolean) :
 
     if(punct == true){
         if(num){
-            console.log("punct and num");
             for(let i = 0; i < length; i++){
                 const chance : number = Math.floor(Math.random() * 2);
                 switch(chance){
@@ -25,7 +24,6 @@ export function wordGenerator(length : number, punct : boolean, num : boolean) :
                 word += " ";
             }
         }else{
-            console.log("punct and no num");
             for(let i = 0; i < length; i++){
                 word += sentence.noNumbers[Math.floor(Math.random() * normalSize)];
                 word += " ";
@@ -33,7 +31,6 @@ export function wordGenerator(length : number, punct : boolean, num : boolean) :
         }
     }else{
         if(num){
-            console.log("no punct and num");
             for(let i = 0; i < length; i++){
                 const chance : number = Math.floor(Math.random() * 2);
                 switch(chance){

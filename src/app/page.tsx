@@ -27,6 +27,9 @@ export default function Home() {
   const go_to_local = ()=>{
     router.push('/local');
   }
+  const go_to_online = ()=>{
+    router.push('/online');
+  }
 
   return (
     <>
@@ -40,7 +43,7 @@ export default function Home() {
         />
         <div id="select-hold">
           <button id="local-btn" className="select-btn" onClick={go_to_local}>Local Comp</button>
-          <button id="online-btn" className="select-btn">Online Comp</button>
+          <button id="online-btn" className="select-btn" onClick={go_to_online}>Online Comp</button>
         </div>
       </div>
     </>
