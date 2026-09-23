@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import TypingCheck from "@/components/typing/typing";
 import './style.css'
 
@@ -14,15 +14,25 @@ export default function Local_Play(){
         punct: false,
         num: false
     });
+    const [settingsLoaded, setLoaded] = useState<boolean>(false)
 
     useEffect(()=>{
-        settings.current = JSON.parse(localStorage.getItem("settings") || '{}')
+        const loadedSettings = JSON.parse(localStorage.getItem("settings") || '{}');
+        if(Object.keys(loadedSettings).length != 0){
+            settings.current = loadedSettings;
+        }
+        setLoaded(true);
     }, []);
 
     return (
         <>
             <div className="full-page-element center-screen-element">
-                <TypingCheck sec={settings.current['time']} punct={settings.current['punct']} num={settings.current['num']}/>
+                {settingsLoaded ? (
+                    <TypingCheck sec={settings.current['time']} punct={settings.current['punct']} num={settings.current['num']}/>
+                ) : (
+                    <>Loading</>
+                )
+                }
             </div>
         </>
     );

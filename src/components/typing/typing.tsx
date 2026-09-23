@@ -16,7 +16,8 @@ export default function TypingCheck({sec, punct, num} : {
 
     // const word = "I am so fucking tired of the small dick jokes. You guys think you are so funny.";
 
-    const [word, setWord] = useState<string>(wordGenerator(Math.floor(sec), punct, num));
+    const [word, setWord] = useState<string>("");
+    const [ready, setReady] = useState<boolean>(false);
     
     const [input, setInput] = useState("");
     const [index, setIndex] = useState(0);
@@ -137,6 +138,12 @@ export default function TypingCheck({sec, punct, num} : {
     }
 
     useEffect(()=>{
+        charRef.current = [];
+        setReady(true);
+        setWord(wordGenerator(Math.floor(sec), punct, num));
+    }, [sec, punct, num]);
+
+    useEffect(()=>{
         if(index > 0){
             if(startState){
                 setStartState(false);
@@ -177,14 +184,16 @@ export default function TypingCheck({sec, punct, num} : {
     // }, [error]);
 
     useEffect(()=>{
-        if(_timer >= sec || index >= word.length){
-            if (timerManager.current) clearInterval(timerManager.current);
-            setStartState(true);
-            calculateResults();
-            // Debug logging
-            // console.log(grossWPM, netWPM, accuracy, time);
-            // console.log(error);
-            loadResult();
+        if(ready){
+            if(_timer >= sec || index >= word.length){
+                if (timerManager.current) clearInterval(timerManager.current);
+                setStartState(true);
+                calculateResults();
+                // Debug logging
+                // console.log(grossWPM, netWPM, accuracy, time);
+                // console.log(error);
+                loadResult();
+            } 
         }
     }, [_timer, index]);
 
@@ -193,7 +202,6 @@ export default function TypingCheck({sec, punct, num} : {
             lowTimer(prevT => prevT - 1);
         }
     }, [_timer])
-
 
     return (
         <>
@@ -207,7 +215,8 @@ export default function TypingCheck({sec, punct, num} : {
                             return (
                                 <span 
                                 key={i} 
-                                ref={(el) => {charRef.current[i] = el}}>
+                                ref={(el) => {charRef.current[i] = el}}
+                                >
                                     {char}
                                 </span>
                             );
