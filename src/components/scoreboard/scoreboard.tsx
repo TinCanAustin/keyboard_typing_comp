@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 import { usePathname } from 'next/navigation';
 import './style.css'
 import { compare } from '@/functions/compare';

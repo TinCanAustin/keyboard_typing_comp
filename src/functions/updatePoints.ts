@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-wrapper-object-types */
 import { getMaxAcc, getMaxWPM, getMinAcc, getMinWPM } from "./mathFunc";
 
 export function updatePoints(lis : Object[]){
@@ -8,7 +10,7 @@ export function updatePoints(lis : Object[]){
     const minAcc = getMinAcc(lis);
 
     lis.forEach((e : any)=>{
-        var point = 0;
+        let point = 0;
         if(maxWPM == minWPM){
             point = e['score']['netWPM'] - minWPM;
         }else{

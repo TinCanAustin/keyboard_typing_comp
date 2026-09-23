@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable  @typescript-eslint/no-wrapper-object-types */
 export function getMaxWPM(lis : Object[]){
     let max = 0;
     if(lis != undefined){

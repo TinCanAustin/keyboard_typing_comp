@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function compare(a : Record<string, any>, b : Record<string, any>){
     if(a['score']['point'] < b['score']['point']){
         return 1;

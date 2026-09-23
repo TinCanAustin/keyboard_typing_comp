@@ -37,7 +37,7 @@ export default function ResultPage(){
         setTime(parsed.time);
 
         router.push('./result/players');
-    }, [])
+    }, []);
 
     const goBack = ()=>{
         router.replace('/local/play');

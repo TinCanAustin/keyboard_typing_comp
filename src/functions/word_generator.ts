@@ -1,7 +1,7 @@
 import sentence from '../misc/words.json'
 
 export function wordGenerator(length : number, punct : boolean, num : boolean) : string{
-    var word = "";
+    let word = "";
 
     const normalSize = sentence.noNumbers.length;
     const numberSize = sentence.withNumbers.length;

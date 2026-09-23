@@ -27,9 +27,6 @@ export default function Home() {
   const go_to_local = ()=>{
     router.push('/local');
   }
-  const go_to_online = ()=>{
-    router.push('/online');
-  }
 
   return (
     <>
