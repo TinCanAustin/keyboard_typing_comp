@@ -18,6 +18,7 @@ export default function TypingCheck({sec, punct, num} : {
 
     const [word, setWord] = useState<string>("");
     const [ready, setReady] = useState<boolean>(false);
+    const [reset_flag, setReset] = useState<number>(0);
     
     const [input, setInput] = useState("");
     const [index, setIndex] = useState(0);
@@ -30,7 +31,7 @@ export default function TypingCheck({sec, punct, num} : {
 
     const [_timer, upTimer] = useState(0);
     const [l_timer, lowTimer] = useState(sec);
-    const [startState, setStartState] = useState(true); //true - can start, false - cannot start 
+    const [startState, setStartState] = useState(true);                                                                                                                                                                                                                                                                                                 //true - can start, false - cannot start 
     const timerManager = useRef<NodeJS.Timeout | null>(null);
 
     const router = useRouter();
@@ -94,8 +95,8 @@ export default function TypingCheck({sec, punct, num} : {
     const calculateResults = ()=>{
         //score eval
         grossWPM = (index / 5) / (_timer / 60);
-        netWPM = Math.round(grossWPM - (actualError.current/(_timer / 60)));
-        accuracy = Math.round(((index - actualError.current) / index) * 100);
+        accuracy = Math.round(((index - error.length) / index) * 100);
+        netWPM = Math.round(grossWPM * (accuracy/100));
 
         //time eval
         time = getTime(_timer);
@@ -118,10 +119,12 @@ export default function TypingCheck({sec, punct, num} : {
 
     const reset = ()=>{
         setWord(wordGenerator(Math.floor(sec), punct, num));
+        
         if(!startState){
             if (timerManager.current) clearInterval(timerManager.current);
             setStartState(true);
         }
+
         inputRef.current!.value = '';
         charRef.current.forEach((e)=>{
             e!.className = '';
@@ -203,6 +206,16 @@ export default function TypingCheck({sec, punct, num} : {
         }
     }, [_timer])
 
+    useEffect(()=>{
+        charRef.current.forEach((e)=>{
+            if(e){
+                e.className = '';
+            }
+        });
+        charRef.current = [];
+        reset();
+    }, [reset_flag]);
+
     return (
         <>
             <div id='type_body'>
@@ -223,7 +236,9 @@ export default function TypingCheck({sec, punct, num} : {
                         })} 
                     </p>
                 </div>
-                <button id='reset_button' onClick={reset}>
+                <button id='reset_button' onClick={()=>{
+                    setReset(flag=>flag + 1);
+                }}>
                     <RiResetLeftFill size={30} className='reset_icon'/>
                 </button>
             </div>
